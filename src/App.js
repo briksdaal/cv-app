@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import CV from './components/CV';
 
 class App extends Component {
   render() {
-    return <div>All working</div>;
+    return <CV />;
   }
 }
 

@@ -9,6 +9,7 @@
   "rules": {
     "react/jsx-filename-extension": "off",
     "react/prefer-stateless-function": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types" : "off"
   }
 }
