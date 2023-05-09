@@ -5,7 +5,8 @@ import Details from './Details';
 import AboutMe from './AboutMe';
 import Experience from './Experience';
 import Skills from './Skills';
-import { dummyData, defaultData } from './defaultData';
+import Management from './Management';
+import { defaultData } from './defaultData';
 import './CV.css';
 
 export default class CV extends Component {
@@ -13,48 +14,46 @@ export default class CV extends Component {
     super(props);
     this.state = defaultData;
 
-    this.handleDummyDataLoad = this.handleDummyDataLoad.bind(this);
-    this.handleEmptyDataLoad = this.handleEmptyDataLoad.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
-  handleDummyDataLoad() {
-    this.setState(dummyData);
-  }
-
-  handleEmptyDataLoad() {
-    this.setState(defaultData);
+  updateState(newState) {
+    this.setState(newState);
   }
 
   render() {
     return (
       <>
         <div className="cv-container">
-          <Header data={this.state} updateState={(newState) => this.setState(newState)} />
+          <Header data={this.state} updateState={this.updateState} />
           <div className="column-container">
             <div className="left-column">
               <Section title="Personal Information">
-                <Details />
+                <Details data={this.state} updateState={this.updateState} />
               </Section>
               <Section title="About Me">
-                <AboutMe />
+                <AboutMe data={this.state} updateState={this.updateState} />
               </Section>
               <Section title="Skills">
-                <Skills />
+                <Skills data={this.state} updateState={this.updateState} />
               </Section>
             </div>
             <div className="right-column">
-              <Section title="Work Experiemce">
-                <Experience />
+              <Section title="Professional Experience">
+                <Experience data={this.state} updateState={this.updateState} />
               </Section>
               <Section title="Education">
-                <Experience />
+                <Experience data={this.state} updateState={this.updateState} />
               </Section>
             </div>
           </div>
+          <div className="bottom-bar" />
         </div>
-        <div className="management-buttons">
-          <button type="button" onClick={this.handleDummyDataLoad}>Load dummy</button>
-          <button type="button" onClick={this.handleEmptyDataLoad}>Load empty</button>
+        <div className="management-container">
+          <Management
+            update={(newState) => this.setState(newState)}
+            getCVObj={() => this.state}
+          />
         </div>
       </>
     );

@@ -9,14 +9,14 @@ export default class Header extends Component {
       <div className="header">
         <div className="heading-container">
           <h1>
-            <EditableContent text={data.h1} updateState={updateState} field="h1" newData={data.newData} />
+            <EditableContent text={data.headerH1} updateState={updateState} field="headerH1" newData={data.newData} />
           </h1>
           <h2>
-            <EditableContent text={data.h2} updateState={updateState} field="h2" newData={data.newData} />
+            <EditableContent text={data.headerH2} updateState={updateState} field="headerH2" newData={data.newData} />
           </h2>
         </div>
         <div className="img-container">
-          <img src={data.img} alt="austin powers" />
+          <img src={data.headerImg} alt="austin powers" />
         </div>
       </div>
     );

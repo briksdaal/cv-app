@@ -1,5 +1,6 @@
 .cv-container {
   width: 900px;
+  margin-bottom: 20px;
 }
 
 .column-container {
@@ -10,4 +11,9 @@
 
 .left-column {
   padding-top: 100px;
+}
+
+.bottom-bar {
+  height: 20px;
+  background: #8d4b55;
 }

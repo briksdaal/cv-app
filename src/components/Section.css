@@ -4,6 +4,10 @@
   color: #8d4b55;
 }
 
+.section + .section h3 {
+    padding-top: 20px;
+}
+
 .section h3:after {
     content: '';
     display: block;
