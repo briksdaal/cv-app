@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import uniqid from 'uniqid';
 import Header from './Header';
 import Section from './Section';
 import Details from './Details';
@@ -6,15 +7,34 @@ import AboutMe from './AboutMe';
 import Experience from './Experience';
 import Skills from './Skills';
 import Management from './Management';
-import { defaultData } from './defaultData';
+import { defaultDataRaw, dummyDataRaw } from './defaultData';
 import './CV.css';
 
 export default class CV extends Component {
   constructor(props) {
     super(props);
-    this.state = defaultData;
+
+    this.defaultData = this.getDataWithKeys(defaultDataRaw);
+    this.dummyData = this.getDataWithKeys(dummyDataRaw);
+
+    this.state = this.defaultData;
+
+    localStorage.clear();
 
     this.updateState = this.updateState.bind(this);
+  }
+
+  getDataWithKeys(data) {
+    return Object.fromEntries(Object.entries(data).map((entry) => {
+      let value = entry[1];
+      if (Array.isArray(value)) {
+        value = value.map((info) => ({
+          key: uniqid(),
+          ...this.getDataWithKeys({ ...info }),
+        }));
+      }
+      return [entry[0], value];
+    }));
   }
 
   updateState(newState) {
@@ -51,6 +71,8 @@ export default class CV extends Component {
         </div>
         <div className="management-container">
           <Management
+            defaultData={this.defaultData}
+            dummyData={this.dummyData}
             update={(newState) => this.setState(newState)}
             getCVObj={() => this.state}
           />

@@ -16,7 +16,7 @@ export default class Header extends Component {
           </h2>
         </div>
         <div className="img-container">
-          <img src={data.headerImg} alt="austin powers" />
+          <img src={data.headerImg} alt={data.headerImgAlt} />
         </div>
       </div>
     );

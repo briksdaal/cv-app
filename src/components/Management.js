@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { dummyData, defaultData } from './defaultData';
 
 export default class Management extends Component {
   constructor(props) {
@@ -13,12 +12,12 @@ export default class Management extends Component {
   }
 
   handleDummyDataLoad() {
-    const { update } = this.props;
+    const { update, dummyData } = this.props;
     update(dummyData);
   }
 
   handleEmptyDataLoad() {
-    const { update } = this.props;
+    const { update, defaultData } = this.props;
     update(defaultData);
   }
 
@@ -51,8 +50,8 @@ export default class Management extends Component {
       <>
         <button type="button" onClick={this.handleDummyDataLoad}>Load Dummy</button>
         <button type="button" onClick={this.handleEmptyDataLoad}>Load Empty</button>
-        <button type="button" onClick={this.handleSaveData}>Save Current</button>
         <button type="button" onClick={this.handleLoadData}>Load Saved</button>
+        <button type="button" onClick={this.handleSaveData}>Save Current</button>
         <button type="button" onClick={this.handleClearSaved}>Clear Saved</button>
       </>
     );
