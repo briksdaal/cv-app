@@ -1,0 +1,37 @@
+.header {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  position: relative;
+  padding: 60px 90px;
+  background: #8d4b55;
+  color: #fff;
+}
+
+.heading-container {
+  grid-column: 2 / 3;
+  grid-row: 1;
+}
+
+.img-container {
+  grid-column: 1 / 2;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform:uppercase;
+}
+
+.header h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.header img {
+  position: absolute;
+  border-radius: 50%;
+  width: 230px;
+  height: 230px;
+  filter: grayscale(1)
+}

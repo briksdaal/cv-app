@@ -1,0 +1,13 @@
+.cv-container {
+  width: 900px;
+}
+
+.column-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding: 30px 90px;
+}
+
+.left-column {
+  padding-top: 100px;
+}
