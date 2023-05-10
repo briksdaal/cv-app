@@ -7,6 +7,7 @@ import AboutMe from './AboutMe';
 import Experience from './Experience';
 import Skills from './Skills';
 import Management from './Management';
+import handleChildUpdates from './helpers/handleChildUpdates';
 import { defaultDataRaw, dummyDataRaw } from './defaultData';
 import './CV.css';
 
@@ -30,7 +31,6 @@ export default class CV extends Component {
     this.handleSaveData = this.handleSaveData.bind(this);
     this.handleLoadSavedData = this.handleLoadSavedData.bind(this);
     this.handleClearSavedData = this.handleClearSavedData.bind(this);
-    this.handleDataUpdates = this.handleDataUpdates.bind(this);
     this.setData = this.setData.bind(this);
     this.changeCurrentEdits = this.changeCurrentEdits.bind(this);
   }
@@ -45,28 +45,18 @@ export default class CV extends Component {
 
   handleLoadSavedData() {
     const loadedData = JSON.parse(localStorage.getItem('savedData'));
-    if (!loadedData) {
-      this.setData(loadedData);
+    if (loadedData) {
+      this.setData(this.dummyData);
     }
   }
 
   handleSaveData() {
-    localStorage.setItem('savedData', JSON.stringify(this.state));
+    const { data } = this.state;
+    localStorage.setItem('savedData', JSON.stringify(data));
   }
 
   handleClearSavedData() {
     localStorage.clear();
-  }
-
-  handleDataUpdates(field, newSubDataObj) {
-    const { data } = this.state;
-
-    const newData = {
-      ...data,
-    };
-    newData[field] = newSubDataObj;
-
-    this.setData(newData);
   }
 
   getDataWithKeys(data) {
@@ -99,7 +89,7 @@ export default class CV extends Component {
         <div className="cv-container">
           <Header
             header={data.header}
-            updateHeader={(newHeader) => this.handleDataUpdates('header', newHeader)}
+            updateHeader={(newChild) => handleChildUpdates(data, newChild, 'header', this.setData)}
             changeCurrentEdits={this.changeCurrentEdits}
           />
           <div className="column-container">
