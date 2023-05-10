@@ -7,7 +7,7 @@ import AboutMe from './AboutMe';
 import Experience from './Experience';
 import Skills from './Skills';
 import Management from './Management';
-import handleChildUpdates from './helpers/handleChildUpdates';
+import { handleChildUpdates } from './helpers/helperFunctions';
 import { defaultDataRaw, dummyDataRaw } from './defaultData';
 import './CV.css';
 
@@ -46,7 +46,7 @@ export default class CV extends Component {
   handleLoadSavedData() {
     const loadedData = JSON.parse(localStorage.getItem('savedData'));
     if (loadedData) {
-      this.setData(this.dummyData);
+      this.setData(loadedData);
     }
   }
 
@@ -84,6 +84,7 @@ export default class CV extends Component {
 
   render() {
     const { data, currentEdits } = this.state;
+    console.log(data);
     return (
       <>
         <div className="cv-container">
@@ -95,22 +96,41 @@ export default class CV extends Component {
           <div className="column-container">
             <div className="left-column">
               <Section title="Personal Information">
-                {/* <Details details={this.state} updateState={this.updateState} /> */}
+                <Details
+                  details={data.details}
+                  updateDetails={(newChild) => handleChildUpdates(data, newChild, 'details', this.setData)}
+                  changeCurrentEdits={this.changeCurrentEdits}
+                />
               </Section>
               <Section title="About Me">
-                {/* <AboutMe data={this.state} updateState={this.updateState} /> */}
+                <AboutMe
+                  aboutMe={data.aboutMe}
+                  updateAboutMe={(newChild) => handleChildUpdates(data, newChild, 'aboutMe', this.setData)}
+                  changeCurrentEdits={this.changeCurrentEdits}
+                />
               </Section>
               <Section title="Skills">
-                {/* <Skills data={this.state} updateState={this.updateState} /> */}
+                <Skills
+                  skills={data.skills}
+                  updateSkills={(newChild) => handleChildUpdates(data, newChild, 'skills', this.setData)}
+                  changeCurrentEdits={this.changeCurrentEdits}
+                />
               </Section>
             </div>
             <div className="right-column">
               <Section title="Professional Experience">
-                {/* <Experience data={this.state} updateState={this.updateState} type="jobs" /> */}
+                <Experience
+                  experiences={data.jobs}
+                  updateExperiences={(newChild) => handleChildUpdates(data, newChild, 'jobs', this.setData)}
+                  changeCurrentEdits={this.changeCurrentEdits}
+                />
               </Section>
               <Section title="Education">
-                {/* <Experience data={this.state}
-                 updateState={this.updateState} type="education" /> */}
+                <Experience
+                  experiences={data.education}
+                  updateExperiences={(newChild) => handleChildUpdates(data, newChild, 'education', this.setData)}
+                  changeCurrentEdits={this.changeCurrentEdits}
+                />
               </Section>
             </div>
           </div>

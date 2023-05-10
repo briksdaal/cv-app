@@ -18,7 +18,7 @@ export default class Management extends Component {
         <button type="button" disabled={currentEdits !== 0} onClick={handleSaveData}>Save Current</button>
         <button type="button" disabled={currentEdits !== 0} onClick={handleClearSavedData}>Clear Saved</button>
         {currentEdits !== 0
-        && <span>Youre currently editing fields, update all exit edit mode</span>}
+        && <p>Youre currently editing fields, update all exit edit mode</p>}
       </>
     );
   }

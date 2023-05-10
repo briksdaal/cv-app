@@ -1,34 +1,20 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
+import { handleChildUpdates, handleLiUpdates } from './helpers/helperFunctions';
+import Li from './Li';
 
 export default class Skills extends Component {
-  constructor(props) {
-    super(props);
-
-    this.updateLi = this.updateLi.bind(this);
-  }
-
-  updateLi(key) {
-    return (text) => {
-      const { data, updateState } = this.props;
-      updateState({
-        skills: data.skills.map((skill) => {
-          if (skill.key === key) {
-            return { ...skill, text };
-          }
-          return skill;
-        }),
-      });
-    };
-  }
-
   render() {
-    const { data, updateState } = this.props;
+    const { skills, updateSkills, changeCurrentEdits } = this.props;
     return (
       <ul>
-        {data.skills.map((skill) => (
+        {skills.map((skill) => (
           <li key={skill.key}>
-            <EditableContent text={skill.text} updateState={updateState} field="headerH1" newData={data.newData} />
+            <EditableContent
+              text={skill.text}
+              handleGlobalStateUpdate={(newChild) => handleLiUpdates(skill.key, skills, newChild, 'text', updateSkills)}
+              changeCurrentEdits={changeCurrentEdits}
+            />
           </li>
         ))}
       </ul>

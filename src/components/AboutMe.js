@@ -3,10 +3,14 @@ import EditableContent from './EditableContent';
 
 export default class AboutMe extends Component {
   render() {
-    const { data, updateState } = this.props;
+    const { aboutMe, updateAboutMe, changeCurrentEdits } = this.props;
     return (
       <p>
-        <EditableContent text={data.aboutMe} updateState={updateState} field="aboutMe" newData={data.newData} />
+        <EditableContent
+          text={aboutMe}
+          handleGlobalStateUpdate={(newChild) => updateAboutMe(newChild)}
+          changeCurrentEdits={changeCurrentEdits}
+        />
       </p>
     );
   }

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import handleChildUpdates from './helpers/handleChildUpdates';
+import { handleChildUpdates } from './helpers/helperFunctions';
 import './Header.css';
 
 export default class Header extends Component {
