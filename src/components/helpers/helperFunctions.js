@@ -19,4 +19,10 @@ function handleLiUpdates(key, currentArray, newChild, field, parentUpdateFunc) {
   parentUpdateFunc(newArray);
 }
 
-export { handleChildUpdates, handleLiUpdates };
+function handleLiRemove(key, currentArray, parentUpdateFunc) {
+  const newArray = currentArray.filter((li) => key !== li.key);
+
+  parentUpdateFunc(newArray);
+}
+
+export { handleChildUpdates, handleLiUpdates, handleLiRemove };

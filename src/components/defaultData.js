@@ -40,8 +40,6 @@ const dummyDataRaw = {
       to: '1965',
       points: [
         { text: 'Executed daring undercover missions to disrupt criminal organizations' },
-        { text: '' },
-        { text: '' },
       ],
     },
     {

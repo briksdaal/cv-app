@@ -35,25 +35,32 @@ export default class EditableContent extends Component {
   }
 
   render() {
-    const { editMode, inputVal } = this.state;
+    const {
+      editMode,
+      inputVal,
+    } = this.state;
     const {
       text,
+      handleLiRemove,
     } = this.props;
 
     return (
-      editMode
-        ? (
-          <>
-            <input type="text" value={inputVal} onChange={this.handleChange} />
-            <button type="button" onClick={this.handleUpdate}>Update</button>
-          </>
-        )
-        : (
-          <>
-            { text }
-            <button type="button" onClick={this.handleEdit}>Edit</button>
-          </>
-        )
+      <>
+        { editMode
+          ? (
+            <>
+              <input type="text" value={inputVal} onChange={this.handleChange} />
+              <button type="button" onClick={this.handleUpdate}>Update</button>
+            </>
+          )
+          : (
+            <>
+              { text }
+              <button type="button" onClick={this.handleEdit}>Edit</button>
+            </>
+          )}
+        {handleLiRemove && <button type="button" onClick={handleLiRemove}>Remove</button>}
+      </>
     );
   }
 }

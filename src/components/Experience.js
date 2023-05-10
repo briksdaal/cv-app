@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import { handleChildUpdates, handleLiUpdates } from './helpers/helperFunctions';
+import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class Experience extends Component {
   render() {
@@ -62,11 +62,28 @@ export default class Experience extends Component {
                         ),
                       )
                     }
+                    handleLiRemove={() => handleLiRemove(
+                      point.key,
+                      exp.points,
+                      (newPoints) => handleLiUpdates(
+                        exp.key,
+                        experiences,
+                        newPoints,
+                        'points',
+                        updateExperiences,
+                      ),
+                    )}
                     changeCurrentEdits={changeCurrentEdits}
                   />
                 </li>
               ))}
             </ul>
+            <button
+              type="button"
+              onClick={() => handleLiRemove(exp.key, experiences, updateExperiences)}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>

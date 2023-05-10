@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import { handleChildUpdates, handleLiUpdates } from './helpers/helperFunctions';
+import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 import Li from './Li';
 
 export default class Skills extends Component {
@@ -13,6 +13,7 @@ export default class Skills extends Component {
             <EditableContent
               text={skill.text}
               handleGlobalStateUpdate={(newChild) => handleLiUpdates(skill.key, skills, newChild, 'text', updateSkills)}
+              handleLiRemove={() => handleLiRemove(skill.key, skills, updateSkills)}
               changeCurrentEdits={changeCurrentEdits}
             />
           </li>
