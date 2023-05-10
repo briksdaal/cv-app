@@ -2,7 +2,7 @@ import austinImg from '../assets/austin.jpg';
 import yourImg from '../assets/your-image.jpg';
 
 const dummyDataRaw = {
-  newData: true,
+  editMode: false,
   header: {
     h1: 'Austin Powers',
     h2: 'International Man of Mystery',
@@ -82,7 +82,7 @@ const dummyDataRaw = {
 };
 
 const defaultDataRaw = {
-  newData: true,
+  editMode: false,
   header: {
     h1: 'Your Name',
     h2: 'Job Description',

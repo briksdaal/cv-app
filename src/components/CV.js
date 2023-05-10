@@ -17,16 +17,56 @@ export default class CV extends Component {
     this.defaultData = this.getDataWithKeys(defaultDataRaw);
     this.dummyData = this.getDataWithKeys(dummyDataRaw);
 
-    this.state = this.defaultData;
+    this.state = {
+      data: this.defaultData,
+      currentEdits: 0,
+    };
 
     localStorage.clear();
 
-    this.updateState = this.updateState.bind(this);
-    this.handleEnableEditMode = this.handleEnableEditMode.bind(this);
+    this.changeCurrentEdits = this.changeCurrentEdits.bind(this);
+    this.handleLoadDummyData = this.handleLoadDummyData.bind(this);
+    this.handleLoadDefaultData = this.handleLoadDefaultData.bind(this);
+    this.handleSaveData = this.handleSaveData.bind(this);
+    this.handleLoadSavedData = this.handleLoadSavedData.bind(this);
+    this.handleClearSavedData = this.handleClearSavedData.bind(this);
+    this.handleDataUpdates = this.handleDataUpdates.bind(this);
+    this.setData = this.setData.bind(this);
+    this.changeCurrentEdits = this.changeCurrentEdits.bind(this);
   }
 
-  handleEnableEditMode() {
-    this.setState({ newData: false });
+  handleLoadDummyData() {
+    this.setData(this.dummyData);
+  }
+
+  handleLoadDefaultData() {
+    this.setData(this.defaultData);
+  }
+
+  handleLoadSavedData() {
+    const loadedData = JSON.parse(localStorage.getItem('savedData'));
+    if (!loadedData) {
+      this.setData(loadedData);
+    }
+  }
+
+  handleSaveData() {
+    localStorage.setItem('savedData', JSON.stringify(this.state));
+  }
+
+  handleClearSavedData() {
+    localStorage.clear();
+  }
+
+  handleDataUpdates(field, newSubDataObj) {
+    const { data } = this.state;
+
+    const newData = {
+      ...data,
+    };
+    newData[field] = newSubDataObj;
+
+    this.setData(newData);
   }
 
   getDataWithKeys(data) {
@@ -42,50 +82,58 @@ export default class CV extends Component {
     }));
   }
 
-  updateState(newState) {
-    this.setState(newState);
+  setData(data) {
+    this.setState({ data });
+  }
+
+  changeCurrentEdits(bool) {
+    const { currentEdits } = this.state;
+    const dx = bool ? 1 : -1;
+    this.setState({ currentEdits: currentEdits + dx });
   }
 
   render() {
-    const { header, newData } = this.state;
+    const { data, currentEdits } = this.state;
     return (
       <>
         <div className="cv-container">
           <Header
-            header={header}
-            updateState={this.updateState}
-            editDisabled={newData}
-            handleEnableEditMode={this.handleEnableEditMode}
+            header={data.header}
+            updateHeader={(newHeader) => this.handleDataUpdates('header', newHeader)}
+            changeCurrentEdits={this.changeCurrentEdits}
           />
-          {/* <div className="column-container">
+          <div className="column-container">
             <div className="left-column">
               <Section title="Personal Information">
-                <Details data={this.state} updateState={this.updateState} />
+                {/* <Details details={this.state} updateState={this.updateState} /> */}
               </Section>
               <Section title="About Me">
-                <AboutMe data={this.state} updateState={this.updateState} />
+                {/* <AboutMe data={this.state} updateState={this.updateState} /> */}
               </Section>
               <Section title="Skills">
-                <Skills data={this.state} updateState={this.updateState} />
+                {/* <Skills data={this.state} updateState={this.updateState} /> */}
               </Section>
             </div>
             <div className="right-column">
               <Section title="Professional Experience">
-                <Experience data={this.state} updateState={this.updateState} type="jobs" />
+                {/* <Experience data={this.state} updateState={this.updateState} type="jobs" /> */}
               </Section>
               <Section title="Education">
-                <Experience data={this.state} updateState={this.updateState} type="education" />
+                {/* <Experience data={this.state}
+                 updateState={this.updateState} type="education" /> */}
               </Section>
             </div>
-          </div> */}
+          </div>
           <div className="bottom-bar" />
         </div>
         <div className="management-container">
           <Management
-            defaultData={this.defaultData}
-            dummyData={this.dummyData}
-            update={(newState) => this.setState(newState)}
-            getCVObj={() => this.state}
+            currentEdits={currentEdits}
+            handleLoadDummyData={this.handleLoadDummyData}
+            handleLoadDefaultData={this.handleLoadDefaultData}
+            handleLoadSavedData={this.handleLoadSavedData}
+            handleSaveData={this.handleSaveData}
+            handleClearSavedData={this.handleClearSavedData}
           />
         </div>
       </>

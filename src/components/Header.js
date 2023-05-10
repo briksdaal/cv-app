@@ -10,25 +10,21 @@ export default class Header extends Component {
   }
 
   handleHeaderUpdates(field, text) {
-    const { header, updateState } = this.props;
+    const { header, updateHeader } = this.props;
 
     const newHeader = {
       ...header,
     };
     newHeader[field] = text;
 
-    updateState({
-      header: {
-        ...newHeader,
-      },
-    });
+    updateHeader(newHeader);
   }
 
   render() {
     const {
       header,
       editDisabled,
-      handleEnableEditMode,
+      changeCurrentEdits,
     } = this.props;
     return (
       <div className="header">
@@ -36,17 +32,15 @@ export default class Header extends Component {
           <h1>
             <EditableContent
               text={header.h1}
-              hadnleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h1', text)}
-              editDisabled={editDisabled}
-              handleEnableEditMode={handleEnableEditMode}
+              handleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h1', text)}
+              changeCurrentEdits={changeCurrentEdits}
             />
           </h1>
           <h2>
             <EditableContent
               text={header.h2}
-              hadnleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h2', text)}
-              editDisabled={editDisabled}
-              handleEnableEditMode={handleEnableEditMode}
+              handleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h2', text)}
+              changeCurrentEdits={changeCurrentEdits}
             />
           </h2>
         </div>

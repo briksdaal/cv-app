@@ -18,32 +18,30 @@ export default class EditableContent extends Component {
   }
 
   handleEdit() {
-    const { text, handleEnableEditMode } = this.props;
+    const { text, changeCurrentEdits } = this.props;
     this.setState({
       editMode: true,
       inputVal: text,
     });
-    handleEnableEditMode();
+    changeCurrentEdits(true);
   }
 
   handleUpdate() {
-    const { hadnleGlobalStateUpdate, field } = this.props;
+    const { handleGlobalStateUpdate, changeCurrentEdits } = this.props;
     const { inputVal } = this.state;
-
+    changeCurrentEdits(false);
     this.setState({ editMode: false });
-    hadnleGlobalStateUpdate(inputVal);
+    handleGlobalStateUpdate(inputVal);
   }
 
   render() {
     const { editMode, inputVal } = this.state;
     const {
       text,
-      editDisabled,
-      handleEnableEditMode,
     } = this.props;
 
     return (
-      (editMode && !editDisabled)
+      editMode
         ? (
           <>
             <input type="text" value={inputVal} onChange={this.handleChange} />
