@@ -3,10 +3,11 @@ import yourImg from '../assets/your-image.jpg';
 
 const dummyDataRaw = {
   newData: true,
-  headerH1: 'Austin Powers',
-  headerH2: 'International Man of Mystery',
-  headerImg: austinImg,
-  headerImgAlt: 'austin powers portrait',
+  header: {
+    h1: 'Austin Powers',
+    h2: 'International Man of Mystery',
+    img: austinImg,
+  },
   aboutMe: 'I am a charismatic and resourceful secret agent with a passion for saving the world from evil masterminds. With my signature British wit and stylish flair, I am always ready to tackle any mission that comes my way. Armed with an arsenal of gadgets and a groovy attitude, I bring a unique blend of espionage and charm to every assignment.',
   details: {
     email: 'austin.powers@spymail.com',
@@ -82,10 +83,11 @@ const dummyDataRaw = {
 
 const defaultDataRaw = {
   newData: true,
-  headerH1: 'Your Name',
-  headerH2: 'Job Description',
-  headerImg: yourImg,
-  headerImgAlt: 'Your image alt description',
+  header: {
+    h1: 'Your Name',
+    h2: 'Job Description',
+    img: yourImg,
+  },
   aboutMe: 'A paragraph about you',
   details: {
     email: 'emailadress@provider.com',

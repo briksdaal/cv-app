@@ -3,20 +3,55 @@ import EditableContent from './EditableContent';
 import './Header.css';
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleHeaderUpdates = this.handleHeaderUpdates.bind(this);
+  }
+
+  handleHeaderUpdates(field, text) {
+    const { header, updateState } = this.props;
+
+    const newHeader = {
+      ...header,
+    };
+    newHeader[field] = text;
+
+    updateState({
+      header: {
+        ...newHeader,
+      },
+    });
+  }
+
   render() {
-    const { data, updateState } = this.props;
+    const {
+      header,
+      editDisabled,
+      handleEnableEditMode,
+    } = this.props;
     return (
       <div className="header">
         <div className="heading-container">
           <h1>
-            <EditableContent text={data.headerH1} updateState={updateState} field="headerH1" newData={data.newData} />
+            <EditableContent
+              text={header.h1}
+              hadnleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h1', text)}
+              editDisabled={editDisabled}
+              handleEnableEditMode={handleEnableEditMode}
+            />
           </h1>
           <h2>
-            <EditableContent text={data.headerH2} updateState={updateState} field="headerH2" newData={data.newData} />
+            <EditableContent
+              text={header.h2}
+              hadnleGlobalStateUpdate={(text) => this.handleHeaderUpdates('h2', text)}
+              editDisabled={editDisabled}
+              handleEnableEditMode={handleEnableEditMode}
+            />
           </h2>
         </div>
         <div className="img-container">
-          <img src={data.headerImg} alt={data.headerImgAlt} />
+          <img src={header.img} alt="profile portrait" />
         </div>
       </div>
     );

@@ -11,7 +11,6 @@ export default class EditableContent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleChange(e) {
@@ -19,36 +18,32 @@ export default class EditableContent extends Component {
   }
 
   handleEdit() {
-    const { updateState, text } = this.props;
+    const { text, handleEnableEditMode } = this.props;
     this.setState({
       editMode: true,
       inputVal: text,
     });
-    updateState({ newData: false });
+    handleEnableEditMode();
   }
 
   handleUpdate() {
-    const { updateState, field } = this.props;
+    const { hadnleGlobalStateUpdate, field } = this.props;
     const { inputVal } = this.state;
-    const newState = {};
 
     this.setState({ editMode: false });
-    newState[field] = inputVal;
-    updateState(newState);
-  }
-
-  handleBlur() {
-    this.setState({
-      editMode: false,
-    });
+    hadnleGlobalStateUpdate(inputVal);
   }
 
   render() {
     const { editMode, inputVal } = this.state;
-    const { text, newData } = this.props;
+    const {
+      text,
+      editDisabled,
+      handleEnableEditMode,
+    } = this.props;
 
     return (
-      (editMode && !newData)
+      (editMode && !editDisabled)
         ? (
           <>
             <input type="text" value={inputVal} onChange={this.handleChange} />

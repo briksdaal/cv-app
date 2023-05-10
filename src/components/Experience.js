@@ -3,8 +3,8 @@ import EditableContent from './EditableContent';
 
 export default class Experience extends Component {
   render() {
-    const { data, updateState } = this.props;
-    const experiences = 'jobs';
+    const { data, updateState, type } = this.props;
+    const experiences = type;
     return (
       <ul>
         {data[experiences].map((exp) => (

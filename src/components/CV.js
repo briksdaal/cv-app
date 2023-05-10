@@ -22,6 +22,11 @@ export default class CV extends Component {
     localStorage.clear();
 
     this.updateState = this.updateState.bind(this);
+    this.handleEnableEditMode = this.handleEnableEditMode.bind(this);
+  }
+
+  handleEnableEditMode() {
+    this.setState({ newData: false });
   }
 
   getDataWithKeys(data) {
@@ -42,11 +47,17 @@ export default class CV extends Component {
   }
 
   render() {
+    const { header, newData } = this.state;
     return (
       <>
         <div className="cv-container">
-          <Header data={this.state} updateState={this.updateState} />
-          <div className="column-container">
+          <Header
+            header={header}
+            updateState={this.updateState}
+            editDisabled={newData}
+            handleEnableEditMode={this.handleEnableEditMode}
+          />
+          {/* <div className="column-container">
             <div className="left-column">
               <Section title="Personal Information">
                 <Details data={this.state} updateState={this.updateState} />
@@ -60,13 +71,13 @@ export default class CV extends Component {
             </div>
             <div className="right-column">
               <Section title="Professional Experience">
-                <Experience data={this.state} updateState={this.updateState} />
+                <Experience data={this.state} updateState={this.updateState} type="jobs" />
               </Section>
               <Section title="Education">
-                <Experience data={this.state} updateState={this.updateState} />
+                <Experience data={this.state} updateState={this.updateState} type="education" />
               </Section>
             </div>
-          </div>
+          </div> */}
           <div className="bottom-bar" />
         </div>
         <div className="management-container">
