@@ -4,7 +4,7 @@ import Header from './Header';
 import Section from './Section';
 import Details from './Details';
 import AboutMe from './AboutMe';
-import Experience from './Experience';
+import Experiences from './Experiences';
 import Skills from './Skills';
 import Management from './Management';
 import { handleChildUpdates } from './helpers/helperFunctions';
@@ -30,7 +30,6 @@ export default class CV extends Component {
     this.handleLoadDefaultData = this.handleLoadDefaultData.bind(this);
     this.handleSaveData = this.handleSaveData.bind(this);
     this.handleLoadSavedData = this.handleLoadSavedData.bind(this);
-    this.handleClearSavedData = this.handleClearSavedData.bind(this);
     this.setData = this.setData.bind(this);
     this.changeCurrentEdits = this.changeCurrentEdits.bind(this);
   }
@@ -55,8 +54,12 @@ export default class CV extends Component {
     localStorage.setItem('savedData', JSON.stringify(data));
   }
 
-  handleClearSavedData() {
+  static handleClearSavedData() {
     localStorage.clear();
+  }
+
+  static getNextId() {
+    return uniqid();
   }
 
   getDataWithKeys(data) {
@@ -64,7 +67,7 @@ export default class CV extends Component {
       let value = entry[1];
       if (Array.isArray(value)) {
         value = value.map((info) => ({
-          key: uniqid(),
+          key: CV.getNextId(),
           ...this.getDataWithKeys({ ...info }),
         }));
       }
@@ -76,15 +79,13 @@ export default class CV extends Component {
     this.setState({ data });
   }
 
-  changeCurrentEdits(bool) {
+  changeCurrentEdits(dx) {
     const { currentEdits } = this.state;
-    const dx = bool ? 1 : -1;
     this.setState({ currentEdits: currentEdits + dx });
   }
 
   render() {
     const { data, currentEdits } = this.state;
-    console.log(data);
     return (
       <>
         <div className="cv-container">
@@ -114,22 +115,25 @@ export default class CV extends Component {
                   skills={data.skills}
                   updateSkills={(newChild) => handleChildUpdates(data, newChild, 'skills', this.setData)}
                   changeCurrentEdits={this.changeCurrentEdits}
+                  getNextId={CV.getNextId}
                 />
               </Section>
             </div>
             <div className="right-column">
               <Section title="Professional Experience">
-                <Experience
+                <Experiences
                   experiences={data.jobs}
                   updateExperiences={(newChild) => handleChildUpdates(data, newChild, 'jobs', this.setData)}
                   changeCurrentEdits={this.changeCurrentEdits}
+                  getNextId={CV.getNextId}
                 />
               </Section>
               <Section title="Education">
-                <Experience
+                <Experiences
                   experiences={data.education}
                   updateExperiences={(newChild) => handleChildUpdates(data, newChild, 'education', this.setData)}
                   changeCurrentEdits={this.changeCurrentEdits}
+                  getNextId={CV.getNextId}
                 />
               </Section>
             </div>
@@ -143,7 +147,7 @@ export default class CV extends Component {
             handleLoadDefaultData={this.handleLoadDefaultData}
             handleLoadSavedData={this.handleLoadSavedData}
             handleSaveData={this.handleSaveData}
-            handleClearSavedData={this.handleClearSavedData}
+            handleClearSavedData={CV.handleClearSavedData}
           />
         </div>
       </>

@@ -12,7 +12,7 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types" : "off",
     "no-unused-vars" :"off",
-    "class-methods-use-this" :"off",
+    // "class-methods-use-this" :"off",
     "react/no-unused-class-component-methods" :"off"
   }
 }

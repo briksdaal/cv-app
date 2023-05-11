@@ -11,6 +11,7 @@ export default class EditableContent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleChange(e) {
@@ -18,20 +19,38 @@ export default class EditableContent extends Component {
   }
 
   handleEdit() {
-    const { text, changeCurrentEdits } = this.props;
+    const { text, changeCurrentEdits, changeExperienceEdits } = this.props;
     this.setState({
       editMode: true,
       inputVal: text,
     });
-    changeCurrentEdits(true);
+    changeCurrentEdits(1);
+    if (changeExperienceEdits) {
+      changeExperienceEdits(1);
+    }
   }
 
   handleUpdate() {
-    const { handleGlobalStateUpdate, changeCurrentEdits } = this.props;
+    const { handleGlobalStateUpdate, changeCurrentEdits, changeExperienceEdits } = this.props;
     const { inputVal } = this.state;
-    changeCurrentEdits(false);
+    changeCurrentEdits(-1);
+    if (changeExperienceEdits) {
+      changeExperienceEdits(-1);
+    }
     this.setState({ editMode: false });
     handleGlobalStateUpdate(inputVal);
+  }
+
+  handleRemove() {
+    const { editMode } = this.state;
+    const { changeCurrentEdits, handleLiRemove, changeExperienceEdits } = this.props;
+    if (editMode) {
+      changeCurrentEdits(-1);
+      if (changeExperienceEdits) {
+        changeExperienceEdits(-1);
+      }
+    }
+    handleLiRemove();
   }
 
   render() {
@@ -59,7 +78,7 @@ export default class EditableContent extends Component {
               <button type="button" onClick={this.handleEdit}>Edit</button>
             </>
           )}
-        {handleLiRemove && <button type="button" onClick={handleLiRemove}>Remove</button>}
+        {handleLiRemove && <button type="button" onClick={this.handleRemove}>Remove</button>}
       </>
     );
   }
