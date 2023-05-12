@@ -63,44 +63,57 @@ export default class SingleExperience extends Component {
     } = this.props;
     return (
       <>
-        <h4>
-          <EditableContent
-            text={exp.title}
-            handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'title', updateExperiences)}
-            changeCurrentEdits={changeCurrentEdits}
-            changeExperienceEdits={this.changeExperienceEdits}
-          />
-        </h4>
-        <h5>
-          <EditableContent
-            text={exp.subtitle}
-            handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'subtitle', updateExperiences)}
-            changeCurrentEdits={changeCurrentEdits}
-            changeExperienceEdits={this.changeExperienceEdits}
-          />
-        </h5>
-        <span>
+        <EditableContent
+          text={exp.title}
+          className="exp-title"
+          handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'title', updateExperiences)}
+          changeCurrentEdits={changeCurrentEdits}
+          changeExperienceEdits={this.changeExperienceEdits}
+        >
+          <h4>
+            {exp.title}
+          </h4>
+        </EditableContent>
+        <EditableContent
+          text={exp.subtitle}
+          className="exp-subtitle"
+          handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'subtitle', updateExperiences)}
+          changeCurrentEdits={changeCurrentEdits}
+          changeExperienceEdits={this.changeExperienceEdits}
+        >
+          <h5>
+            {exp.subtitle}
+          </h5>
+        </EditableContent>
+        <div className="exp-from-to">
           <EditableContent
             text={exp.from}
+            className="exp-from"
             handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'from', updateExperiences)}
             changeCurrentEdits={changeCurrentEdits}
             changeExperienceEdits={this.changeExperienceEdits}
-          />
+          >
+            {exp.from}
+          </EditableContent>
           {' '}
           -
           {' '}
           <EditableContent
             text={exp.to}
+            className="exp-to"
             handleGlobalStateUpdate={(newChild) => handleLiUpdates(exp.key, experiences, newChild, 'to', updateExperiences)}
             changeCurrentEdits={changeCurrentEdits}
             changeExperienceEdits={this.changeExperienceEdits}
-          />
-        </span>
-        <ul>
+          >
+            {exp.to}
+          </EditableContent>
+        </div>
+        <ul className="exp-points">
           {exp.points.map((point) => (
             <li key={point.key}>
               <EditableContent
                 text={point.text}
+                textarea
                 handleGlobalStateUpdate={
                       (newChild) => handleLiUpdates(
                         point.key,
@@ -129,7 +142,9 @@ export default class SingleExperience extends Component {
                 )}
                 changeCurrentEdits={changeCurrentEdits}
                 changeExperienceEdits={this.changeExperienceEdits}
-              />
+              >
+                {point.text}
+              </EditableContent>
             </li>
           ))}
         </ul>

@@ -13,20 +13,22 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="heading-container">
-          <h1>
-            <EditableContent
-              text={header.h1}
-              handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'h1', updateHeader)}
-              changeCurrentEdits={changeCurrentEdits}
-            />
-          </h1>
-          <h2>
-            <EditableContent
-              text={header.h2}
-              handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'h2', updateHeader)}
-              changeCurrentEdits={changeCurrentEdits}
-            />
-          </h2>
+          <EditableContent
+            text={header.h1}
+            className="header-h1"
+            handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'h1', updateHeader)}
+            changeCurrentEdits={changeCurrentEdits}
+          >
+            <h1>{header.h1}</h1>
+          </EditableContent>
+          <EditableContent
+            text={header.h2}
+            className="header-h2"
+            handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'h2', updateHeader)}
+            changeCurrentEdits={changeCurrentEdits}
+          >
+            <h2>{header.h2}</h2>
+          </EditableContent>
         </div>
         <div className="img-container">
           <img src={header.img} alt="profile portrait" />

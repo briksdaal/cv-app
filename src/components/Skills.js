@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
 import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
-import Li from './Li';
 
 export default class Skills extends Component {
   constructor(props) {
@@ -23,15 +22,18 @@ export default class Skills extends Component {
     const { skills, updateSkills, changeCurrentEdits } = this.props;
     return (
       <>
-        <ul>
+        <ul className="skills">
           {skills.map((skill) => (
             <li key={skill.key}>
               <EditableContent
                 text={skill.text}
+                textarea
                 handleGlobalStateUpdate={(newChild) => handleLiUpdates(skill.key, skills, newChild, 'text', updateSkills)}
                 handleLiRemove={() => handleLiRemove(skill.key, skills, updateSkills)}
                 changeCurrentEdits={changeCurrentEdits}
-              />
+              >
+                {skill.text}
+              </EditableContent>
             </li>
           ))}
         </ul>
