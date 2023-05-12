@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 import SingleExperience from './SingleExperience';
+import Button from './Button';
+import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class Experiences extends Component {
   constructor(props) {
@@ -51,7 +52,10 @@ export default class Experiences extends Component {
             </li>
           ))}
         </ul>
-        <button type="button" onClick={this.handleAddExp}>Add Exp</button>
+        <Button
+          onClick={this.handleAddExp}
+          type="add"
+        />
       </>
     );
   }

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
+import Button from './Button';
 import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class SingleExperience extends Component {
@@ -108,13 +109,14 @@ export default class SingleExperience extends Component {
             {exp.to}
           </EditableContent>
         </div>
-        <ul className="exp-points">
-          {exp.points.map((point) => (
-            <li key={point.key}>
-              <EditableContent
-                text={point.text}
-                textarea
-                handleGlobalStateUpdate={
+        <div className="exp-points-container">
+          <ul className="exp-points">
+            {exp.points.map((point) => (
+              <li key={point.key}>
+                <EditableContent
+                  text={point.text}
+                  textarea
+                  handleGlobalStateUpdate={
                       (newChild) => handleLiUpdates(
                         point.key,
                         exp.points,
@@ -129,37 +131,34 @@ export default class SingleExperience extends Component {
                         ),
                       )
                     }
-                handleLiRemove={() => handleLiRemove(
-                  point.key,
-                  exp.points,
-                  (newPoints) => handleLiUpdates(
-                    exp.key,
-                    experiences,
-                    newPoints,
-                    'points',
-                    updateExperiences,
-                  ),
-                )}
-                changeCurrentEdits={changeCurrentEdits}
-                changeExperienceEdits={this.changeExperienceEdits}
-              >
-                {point.text}
-              </EditableContent>
-            </li>
-          ))}
-        </ul>
-        <button
-          type="button"
-          onClick={this.handleAddPoint}
-        >
-          Add point
-        </button>
-        <button
-          type="button"
+                  handleLiRemove={() => handleLiRemove(
+                    point.key,
+                    exp.points,
+                    (newPoints) => handleLiUpdates(
+                      exp.key,
+                      experiences,
+                      newPoints,
+                      'points',
+                      updateExperiences,
+                    ),
+                  )}
+                  changeCurrentEdits={changeCurrentEdits}
+                  changeExperienceEdits={this.changeExperienceEdits}
+                >
+                  {point.text}
+                </EditableContent>
+              </li>
+            ))}
+          </ul>
+          <Button
+            onClick={this.handleAddPoint}
+            type="add"
+          />
+        </div>
+        <Button
           onClick={this.handleExpRemove}
-        >
-          Remove
-        </button>
+          type="remove"
+        />
       </>
     );
   }

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Button from './Button';
 
 export default class EditableContent extends Component {
   constructor(props) {
@@ -76,16 +77,28 @@ export default class EditableContent extends Component {
               {textarea
                 ? <textarea value={inputVal} onChange={this.handleChange} />
                 : <input type="text" value={inputVal} onChange={this.handleChange} />}
-              <button type="button" onClick={this.handleUpdate}>Update</button>
+              <Button
+                onClick={this.handleUpdate}
+                type="check"
+              />
             </>
           )
           : (
             <>
               { children }
-              <button type="button" onClick={this.handleEdit}>Edit</button>
+              <Button
+                onClick={this.handleEdit}
+                type="edit"
+              />
             </>
           )}
-        {handleLiRemove && <button type="button" onClick={this.handleRemove}>Remove</button>}
+        {handleLiRemove
+              && (
+              <Button
+                onClick={this.handleRemove}
+                type="remove"
+              />
+              )}
       </div>
     );
   }
