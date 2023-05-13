@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import Button from './Button';
+import ActionButton from './ActionButton';
 import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class Skills extends Component {
@@ -38,7 +38,7 @@ export default class Skills extends Component {
             </li>
           ))}
         </ul>
-        <Button
+        <ActionButton
           onClick={this.handleAddSkill}
           type="add"
         />

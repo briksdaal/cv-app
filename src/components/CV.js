@@ -1,5 +1,6 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import uniqid from 'uniqid';
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import Header from './Header';
 import Section from './Section';
 import Details from './Details';
@@ -10,10 +11,13 @@ import Management from './Management';
 import { handleChildUpdates } from './helpers/helperFunctions';
 import { defaultDataRaw, dummyDataRaw } from './defaultData';
 import './CV.css';
+import Button from './ActionButton';
 
 export default class CV extends Component {
   constructor(props) {
     super(props);
+
+    this.ref = React.createRef();
 
     this.defaultData = this.getDataWithKeys(defaultDataRaw);
     this.dummyData = this.getDataWithKeys(dummyDataRaw);
@@ -88,7 +92,7 @@ export default class CV extends Component {
     const { data, currentEdits } = this.state;
     return (
       <>
-        <div className="cv-container">
+        <div className="cv-container" ref={this.ref}>
           <Header
             header={data.header}
             updateHeader={(newChild) => handleChildUpdates(data, newChild, 'header', this.setData)}
@@ -149,6 +153,18 @@ export default class CV extends Component {
             handleSaveData={this.handleSaveData}
             handleClearSavedData={CV.handleClearSavedData}
           />
+          <ReactToPrint content={() => this.ref.current}>
+            <PrintContextConsumer>
+              {({ handlePrint }) => (
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                >
+                  Print CV
+                </button>
+              )}
+            </PrintContextConsumer>
+          </ReactToPrint>
         </div>
       </>
     );

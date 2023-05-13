@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from './Button';
+import ActionButton from './ActionButton';
 import { handleChildUpdates } from './helpers/helperFunctions';
 
 export default class Header extends Component {
@@ -29,7 +29,7 @@ export default class Header extends Component {
     return (
       <div className="img-container">
         <img src={url} alt="profile portrait" />
-        <Button
+        <ActionButton
           type="edit"
           onClick={this.handleClick}
         />

@@ -8,6 +8,7 @@ export default class Button extends Component {
     const {
       type,
       onClick,
+      children,
     } = this.props;
 
     let btn = 'Click';
@@ -28,7 +29,7 @@ export default class Button extends Component {
         className={type}
         onClick={onClick}
       >
-        {btn}
+        { btn }
       </button>
     );
   }

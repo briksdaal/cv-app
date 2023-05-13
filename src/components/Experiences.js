@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
 import SingleExperience from './SingleExperience';
-import Button from './Button';
+import ActionButton from './ActionButton';
 import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class Experiences extends Component {
@@ -52,7 +52,7 @@ export default class Experiences extends Component {
             </li>
           ))}
         </ul>
-        <Button
+        <ActionButton
           onClick={this.handleAddExp}
           type="add"
         />

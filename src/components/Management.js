@@ -10,6 +10,7 @@ export default class Management extends Component {
       handleSaveData,
       handleClearSavedData,
     } = this.props;
+
     return (
       <>
         <button type="button" disabled={currentEdits !== 0} onClick={handleLoadDummyData}>Load Dummy</button>

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
-import Button from './Button';
+import ActionButton from './ActionButton';
 import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 
 export default class SingleExperience extends Component {
@@ -150,12 +150,12 @@ export default class SingleExperience extends Component {
               </li>
             ))}
           </ul>
-          <Button
+          <ActionButton
             onClick={this.handleAddPoint}
             type="add"
           />
         </div>
-        <Button
+        <ActionButton
           onClick={this.handleExpRemove}
           type="remove"
         />
