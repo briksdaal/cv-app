@@ -1,0 +1,26 @@
+.action-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: #fff;
+    box-shadow: #cbcbcb 1px 1px 3px 1px;
+    border-radius: 5px;
+    /* visibility: hidden; */
+}
+
+.editable:hover .action-button {
+    /* visibility: visible; */
+}
+
+.editable .remove {
+    margin-left: 5px;
+}
+
+.header .action-button {
+
+    box-shadow: #5c3036 1px 1px 3px 1px;
+}

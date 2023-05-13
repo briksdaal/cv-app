@@ -1,0 +1,12 @@
+.exp-points {
+    list-style-position: inside;
+}
+
+.exp-points li {
+    width: 100%;
+    display: grid;
+}
+
+.exp-from-to .editable, .exp-points .editable {
+    display: inline-grid;
+}

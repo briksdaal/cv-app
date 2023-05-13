@@ -10,7 +10,7 @@ import Skills from './Skills';
 import Management from './Management';
 import { handleChildUpdates } from './helpers/helperFunctions';
 import { defaultDataRaw, dummyDataRaw } from './defaultData';
-import './CV.css';
+import './styles/CV.css';
 import Button from './ActionButton';
 
 export default class CV extends Component {
@@ -91,7 +91,7 @@ export default class CV extends Component {
   render() {
     const { data, currentEdits } = this.state;
     return (
-      <>
+      <div className="cv-app">
         <div className="cv-container" ref={this.ref}>
           <Header
             header={data.header}
@@ -166,7 +166,7 @@ export default class CV extends Component {
             </PrintContextConsumer>
           </ReactToPrint>
         </div>
-      </>
+      </div>
     );
   }
 }

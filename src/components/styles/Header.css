@@ -1,8 +1,8 @@
 .header {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 50%;
   position: relative;
-  padding: 60px 90px;
+  padding: 60px 60px;
   background: #8d4b55;
   color: #fff;
 }

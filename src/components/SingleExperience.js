@@ -2,6 +2,7 @@ import { Component } from 'react';
 import EditableContent from './EditableContent';
 import ActionButton from './ActionButton';
 import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
+import './styles/SingleExperience.css';
 
 export default class SingleExperience extends Component {
   constructor(props) {

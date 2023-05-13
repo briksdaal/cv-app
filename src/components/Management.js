@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './styles/Management.css';
 
 export default class Management extends Component {
   render() {

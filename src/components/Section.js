@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import './Section.css';
+import './styles/Section.css';
 
 export default class Section extends Component {
   render() {

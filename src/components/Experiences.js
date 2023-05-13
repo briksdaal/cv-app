@@ -3,6 +3,7 @@ import EditableContent from './EditableContent';
 import SingleExperience from './SingleExperience';
 import ActionButton from './ActionButton';
 import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
+import './styles/Experiences.css';
 
 export default class Experiences extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export default class Experiences extends Component {
     } = this.props;
     return (
       <>
-        <ul>
+        <ul className="experiences">
           {experiences.map((exp) => (
             <li key={exp.key}>
               <SingleExperience

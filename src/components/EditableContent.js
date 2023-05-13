@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ActionButton from './ActionButton';
+import './styles/EditableContent.css';
 
 export default class EditableContent extends Component {
   constructor(props) {
@@ -61,16 +62,25 @@ export default class EditableContent extends Component {
     } = this.state;
     const {
       children,
-      text,
       className,
       textarea,
       handleLiRemove,
     } = this.props;
 
-    const classes = className ? `editable ${className}` : 'editable';
+    const classArray = ['editable'];
+
+    if (className) {
+      classArray.push(className);
+    }
+    if (handleLiRemove) {
+      classArray.push('removable');
+    }
+    if (editMode) {
+      classArray.push('in-edit');
+    }
 
     return (
-      <div className={classes}>
+      <div className={classArray.join(' ')}>
         { editMode
           ? (
             <>

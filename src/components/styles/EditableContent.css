@@ -1,0 +1,9 @@
+.editable {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+}
+
+.removable {
+    grid-template-columns: 1fr auto auto;
+}

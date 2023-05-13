@@ -1,0 +1,39 @@
+.cv-app {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.cv-container {
+  min-height: 100vh;
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  width: 900px;
+  background: #fff;
+}
+
+.management-container {
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  margin: 60px 60px 0 0;
+  gap: 15px;
+}
+
+.column-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px 60px;
+  gap: 10px;
+}
+
+.left-column {
+  padding-top: 100px;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  width: 900px;
+  height: 20px;
+  background: #8d4b55;
+}

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 import { MdEdit, MdAdd } from 'react-icons/md';
 import { GrFormCheckmark } from 'react-icons/gr';
+import './styles/ActionButton.css';
 
 export default class Button extends Component {
   render() {
@@ -26,7 +27,7 @@ export default class Button extends Component {
     return (
       <button
         type="button"
-        className={type}
+        className={`action-button ${type}`}
         onClick={onClick}
       >
         { btn }
