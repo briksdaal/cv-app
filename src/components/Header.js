@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
+import EditableImage from './EditableImage';
 import { handleChildUpdates } from './helpers/helperFunctions';
 import './Header.css';
 
@@ -30,9 +31,13 @@ export default class Header extends Component {
             <h2>{header.h2}</h2>
           </EditableContent>
         </div>
-        <div className="img-container">
+        <EditableImage
+          url={header.img}
+          handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'img', updateHeader)}
+        />
+        {/* <div className="img-container">
           <img src={header.img} alt="profile portrait" />
-        </div>
+        </div> */}
       </div>
     );
   }
