@@ -24,6 +24,15 @@
   z-index: 10;
 }
 
+.editable span,
+.editable div,
+.editable p,
+.editable input,
+.editable textarea {
+  font-size: 0.8rem;
+}
+
+
 .editable .action-buttons-container {
   display: none;
   padding-right: 6px;
@@ -47,7 +56,6 @@
 }
 
 .editable input, .editable textarea {
-  font-size: 1rem;
   width: 100%;
   outline: none;
   background: none;

@@ -29,7 +29,6 @@ const dummyDataRaw = {
       to: 'Present',
       points: [
         { text: 'Conducted undercover operations to gather intelligence on international threats' },
-        { text: 'Infiltrated enemy organizations and foiled multiple assassination attempts' },
         { text: 'Utilized cutting-edge technology for espionage and counterintelligence purposes' },
       ],
     },
@@ -42,17 +41,6 @@ const dummyDataRaw = {
         { text: 'Executed daring undercover missions to disrupt criminal organizations' },
       ],
     },
-    {
-      title: 'Field Agent',
-      subtitle: 'Central Intelligence Agency (CIA) ',
-      from: '1961',
-      to: '1963',
-      points: [
-        { text: 'Collaborated with intelligence agencies worldwide to combat global threats' },
-        { text: 'Conducted reconnaissance missions in hostile territories' },
-        { text: 'Rescued hostages and thwarted plans of international villains' },
-      ],
-    },
   ],
   education: [
     {
@@ -61,7 +49,6 @@ const dummyDataRaw = {
       from: '1960',
       to: '1961',
       points: [
-        { text: 'Studied the history and theory of espionage, gaining insights into the evolution of covert operations' },
         { text: 'Specialized in disguise techniques, including creating convincing personas and mastering the art of subterfuge' },
         { text: 'Explored the psychology of espionage and the art of manipulation for strategic advantage' },
       ],
@@ -72,7 +59,6 @@ const dummyDataRaw = {
       from: '1956',
       to: '1960',
       points: [
-        { text: 'Participated in the school\'s secret Spy Club, honing my espionage skills from a young age' },
         { text: 'Developed a keen sense of fashion and style, mastering the art of the groovy 60s attire' },
       ],
     },

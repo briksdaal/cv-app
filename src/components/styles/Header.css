@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   position: relative;
-  padding: 60px 60px;
+  padding: 50px 60px;
   background: #8d4b55;
   color: #fff;
 }
