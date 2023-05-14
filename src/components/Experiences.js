@@ -39,25 +39,25 @@ export default class Experiences extends Component {
       getNextId,
     } = this.props;
     return (
-      <>
-        <ul className="experiences">
-          {experiences.map((exp) => (
-            <li key={exp.key}>
-              <SingleExperience
-                exp={exp}
-                experiences={experiences}
-                updateExperiences={updateExperiences}
-                changeCurrentEdits={changeCurrentEdits}
-                getNextId={getNextId}
-              />
-            </li>
-          ))}
-        </ul>
-        <ActionButton
-          onClick={this.handleAddExp}
-          type="add"
-        />
-      </>
+      <ul className="experiences">
+        {experiences.map((exp) => (
+          <li key={exp.key}>
+            <SingleExperience
+              exp={exp}
+              experiences={experiences}
+              updateExperiences={updateExperiences}
+              changeCurrentEdits={changeCurrentEdits}
+              getNextId={getNextId}
+            />
+          </li>
+        ))}
+        <li className="add-exp-container">
+          <ActionButton
+            onClick={this.handleAddExp}
+            type="add"
+          />
+        </li>
+      </ul>
     );
   }
 }

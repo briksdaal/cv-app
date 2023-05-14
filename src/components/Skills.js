@@ -23,27 +23,29 @@ export default class Skills extends Component {
   render() {
     const { skills, updateSkills, changeCurrentEdits } = this.props;
     return (
-      <>
-        <ul className="skills">
-          {skills.map((skill) => (
-            <li key={skill.key}>
-              <EditableContent
-                text={skill.text}
-                textarea
-                handleGlobalStateUpdate={(newChild) => handleLiUpdates(skill.key, skills, newChild, 'text', updateSkills)}
-                handleLiRemove={() => handleLiRemove(skill.key, skills, updateSkills)}
-                changeCurrentEdits={changeCurrentEdits}
-              >
-                <span>{skill.text}</span>
-              </EditableContent>
-            </li>
-          ))}
-        </ul>
-        <ActionButton
-          onClick={this.handleAddSkill}
-          type="add"
-        />
-      </>
+      <ul className="skills">
+        {skills.map((skill) => (
+          <li key={skill.key}>
+            <EditableContent
+              text={skill.text}
+              textarea
+              handleGlobalStateUpdate={(newChild) => handleLiUpdates(skill.key, skills, newChild, 'text', updateSkills)}
+              handleLiRemove={() => handleLiRemove(skill.key, skills, updateSkills)}
+              changeCurrentEdits={changeCurrentEdits}
+            >
+              <span>{skill.text}</span>
+            </EditableContent>
+          </li>
+        ))}
+        <li>
+          <div className="add-skill-container">
+            <ActionButton
+              onClick={this.handleAddSkill}
+              type="add"
+            />
+          </div>
+        </li>
+      </ul>
     );
   }
 }

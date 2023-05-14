@@ -8,11 +8,24 @@ export default class SingleExperience extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { expEdits: 0 };
+    this.state = {
+      expEdits: 0,
+      toBeRemoved: false,
+    };
 
+    this.handleHoverOnTrash = this.handleHoverOnTrash.bind(this);
+    this.handleHoverOffTrash = this.handleHoverOffTrash.bind(this);
     this.handleExpRemove = this.handleExpRemove.bind(this);
     this.handleAddPoint = this.handleAddPoint.bind(this);
     this.changeExperienceEdits = this.changeExperienceEdits.bind(this);
+  }
+
+  handleHoverOnTrash() {
+    this.setState({ toBeRemoved: true });
+  }
+
+  handleHoverOffTrash() {
+    this.setState({ toBeRemoved: false });
   }
 
   handleExpRemove() {
@@ -63,8 +76,17 @@ export default class SingleExperience extends Component {
       updateExperiences,
       changeCurrentEdits,
     } = this.props;
+
+    const { toBeRemoved } = this.state;
+
+    const classArray = ['single-experience'];
+
+    if (toBeRemoved) {
+      classArray.push('to-be-removed');
+    }
+
     return (
-      <>
+      <div className={classArray.join(' ')}>
         <EditableContent
           text={exp.title}
           className="exp-title"
@@ -150,17 +172,27 @@ export default class SingleExperience extends Component {
                 </EditableContent>
               </li>
             ))}
+            <li>
+              <div className="add-point-container">
+                <ActionButton
+                  onClick={this.handleAddPoint}
+                  type="add"
+                />
+              </div>
+            </li>
           </ul>
+        </div>
+        <div
+          className="exp-remove-container"
+          onMouseEnter={this.handleHoverOnTrash}
+          onMouseLeave={this.handleHoverOffTrash}
+        >
           <ActionButton
-            onClick={this.handleAddPoint}
-            type="add"
+            onClick={this.handleExpRemove}
+            type="remove"
           />
         </div>
-        <ActionButton
-          onClick={this.handleExpRemove}
-          type="remove"
-        />
-      </>
+      </div>
     );
   }
 }
