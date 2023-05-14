@@ -1,0 +1,13 @@
+.img-container .action-buttons-container {
+    display: none;
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.img-container:hover .action-buttons-container {
+    display: flex;
+}

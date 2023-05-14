@@ -1,0 +1,9 @@
+.detail-container {
+    display: flex;
+}
+
+.detail-container i {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}

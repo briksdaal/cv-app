@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ActionButton from './ActionButton';
 import { handleChildUpdates } from './helpers/helperFunctions';
+import './styles/EditableImage.css';
 
 export default class Header extends Component {
   constructor(props) {
@@ -29,10 +30,12 @@ export default class Header extends Component {
     return (
       <div className="img-container">
         <img src={url} alt="profile portrait" />
-        <ActionButton
-          type="edit"
-          onClick={this.handleClick}
-        />
+        <div className="action-buttons-container">
+          <ActionButton
+            type="edit"
+            onClick={this.handleClick}
+          />
+        </div>
         <input
           type="file"
           ref={this.hiddenFileInput}

@@ -18,7 +18,7 @@ export default class Details extends Component {
               }
               changeCurrentEdits={changeCurrentEdits}
             >
-              {detail[1]}
+              <span>{detail[1]}</span>
             </EditableContent>
           </DetailContainer>
         ))}

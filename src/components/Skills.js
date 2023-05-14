@@ -2,6 +2,7 @@ import { Component } from 'react';
 import EditableContent from './EditableContent';
 import ActionButton from './ActionButton';
 import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
+import './styles/Skills.css';
 
 export default class Skills extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class Skills extends Component {
                 handleLiRemove={() => handleLiRemove(skill.key, skills, updateSkills)}
                 changeCurrentEdits={changeCurrentEdits}
               >
-                {skill.text}
+                <span>{skill.text}</span>
               </EditableContent>
             </li>
           ))}

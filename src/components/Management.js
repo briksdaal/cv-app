@@ -12,15 +12,16 @@ export default class Management extends Component {
       handleClearSavedData,
     } = this.props;
 
+    const editMode = currentEdits !== 0;
+
     return (
       <>
-        <button type="button" disabled={currentEdits !== 0} onClick={handleLoadDummyData}>Load Dummy</button>
-        <button type="button" disabled={currentEdits !== 0} onClick={handleLoadDefaultData}>Load Empty</button>
-        <button type="button" disabled={currentEdits !== 0} onClick={handleLoadSavedData}>Load Saved</button>
-        <button type="button" disabled={currentEdits !== 0} onClick={handleSaveData}>Save Current</button>
-        <button type="button" disabled={currentEdits !== 0} onClick={handleClearSavedData}>Clear Saved</button>
-        {currentEdits !== 0
-        && <p>Youre currently editing fields, update all exit edit mode</p>}
+        <h2>{editMode ? 'Edit Mode' : 'Preview Mode'}</h2>
+        <button type="button" disabled={editMode} onClick={handleLoadDummyData}>Load Dummy</button>
+        <button type="button" disabled={editMode} onClick={handleLoadDefaultData}>Load Empty</button>
+        <button type="button" disabled={editMode} onClick={handleLoadSavedData}>Load Saved</button>
+        <button type="button" disabled={editMode} onClick={handleSaveData}>Save Current</button>
+        <button type="button" disabled={editMode} onClick={handleClearSavedData}>Clear Saved</button>
       </>
     );
   }

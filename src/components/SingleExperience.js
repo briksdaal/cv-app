@@ -95,7 +95,7 @@ export default class SingleExperience extends Component {
             changeCurrentEdits={changeCurrentEdits}
             changeExperienceEdits={this.changeExperienceEdits}
           >
-            {exp.from}
+            <span>{exp.from}</span>
           </EditableContent>
           {' '}
           -
@@ -107,7 +107,7 @@ export default class SingleExperience extends Component {
             changeCurrentEdits={changeCurrentEdits}
             changeExperienceEdits={this.changeExperienceEdits}
           >
-            {exp.to}
+            <span>{exp.to}</span>
           </EditableContent>
         </div>
         <div className="exp-points-container">
@@ -146,7 +146,7 @@ export default class SingleExperience extends Component {
                   changeCurrentEdits={changeCurrentEdits}
                   changeExperienceEdits={this.changeExperienceEdits}
                 >
-                  {point.text}
+                  <span>{point.text}</span>
                 </EditableContent>
               </li>
             ))}

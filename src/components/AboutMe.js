@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
+import './styles/AboutMe.css';
 
 export default class AboutMe extends Component {
   render() {

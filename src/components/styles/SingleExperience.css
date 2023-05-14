@@ -1,12 +1,23 @@
+.exp-from-to .editable,
+.exp-points .editable {
+  display: inline-grid;
+  width: unset;
+}
+
+.exp-from-to input {
+  width: 170px;
+}
+
 .exp-points {
-    list-style-position: inside;
+  list-style-position: inside;
+  list-style-type: disc;
 }
 
-.exp-points li {
-    width: 100%;
-    display: grid;
+.exp-points li::before {
+  content: "";
+  margin-right: -12px;
 }
 
-.exp-from-to .editable, .exp-points .editable {
-    display: inline-grid;
+.exp-points .editable {
+  width: calc(100% - 14px);
 }

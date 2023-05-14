@@ -2,9 +2,9 @@ import { Component } from 'react';
 import { FaRegEnvelope } from 'react-icons/fa';
 import { BsTelephoneFill, BsGlobe2 } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
-
 import EditableContent from './EditableContent';
 import { handleChildUpdates } from './helpers/helperFunctions';
+import './styles/DetailContainer.css';
 
 export default class DetailContainer extends Component {
   render() {

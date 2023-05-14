@@ -67,6 +67,10 @@ export default class EditableContent extends Component {
       handleLiRemove,
     } = this.props;
 
+    const inputEl = textarea
+      ? <textarea value={inputVal} onChange={this.handleChange} />
+      : <input type="text" value={inputVal} onChange={this.handleChange} />;
+
     const classArray = ['editable'];
 
     if (className) {
@@ -82,33 +86,30 @@ export default class EditableContent extends Component {
     return (
       <div className={classArray.join(' ')}>
         { editMode
-          ? (
-            <>
-              {textarea
-                ? <textarea value={inputVal} onChange={this.handleChange} />
-                : <input type="text" value={inputVal} onChange={this.handleChange} />}
+          ? inputEl
+          : children }
+        <div className="action-buttons-container">
+          {editMode
+            ? (
               <ActionButton
                 onClick={this.handleUpdate}
                 type="check"
               />
-            </>
-          )
-          : (
-            <>
-              { children }
+            )
+            : (
               <ActionButton
                 onClick={this.handleEdit}
                 type="edit"
               />
-            </>
-          )}
-        {handleLiRemove
+            )}
+          {handleLiRemove
               && (
               <ActionButton
                 onClick={this.handleRemove}
                 type="remove"
               />
               )}
+        </div>
       </div>
     );
   }
