@@ -14,7 +14,7 @@
     background: #e9e9e9;
 }
 
-.section:hover .add-exp-container,
-.section .add-exp-container:first-child {
+.experiences:hover .add-exp-container,
+.experiences .add-exp-container:first-child {
     display: flex;
 }

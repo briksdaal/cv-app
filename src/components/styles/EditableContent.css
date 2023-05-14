@@ -6,10 +6,6 @@
   width: 100%;
 }
 
-.editable h5 {
-  font-size: 0.85rem;
-}
-
 .editable input,
 .editable textarea,
 .editable h1,
@@ -32,6 +28,13 @@
   font-size: 0.8rem;
 }
 
+.editable.exp-title h4 {
+  font-size: 0.9rem;
+}
+
+.editable.exp-subtitle h5 {
+  font-size: 0.85rem;
+}
 
 .editable .action-buttons-container {
   display: none;
@@ -81,6 +84,7 @@
 }
 
 .editable.exp-title input {
+  font-size: 0.9rem;
   font-weight: 700;
 }
 

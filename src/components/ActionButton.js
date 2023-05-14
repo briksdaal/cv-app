@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
-import { MdEdit, MdAdd } from 'react-icons/md';
+import { MdEdit } from 'react-icons/md';
 import { GrFormCheckmark } from 'react-icons/gr';
+import { ImPlus } from 'react-icons/im';
 import './styles/ActionButton.css';
 
 export default class Button extends Component {
@@ -17,7 +18,7 @@ export default class Button extends Component {
     if (type === 'check') {
       btn = <GrFormCheckmark />;
     } else if (type === 'add') {
-      btn = <MdAdd />;
+      btn = <ImPlus />;
     } else if (type === 'remove') {
       btn = <FaTrashAlt />;
     } else if (type === 'edit') {
