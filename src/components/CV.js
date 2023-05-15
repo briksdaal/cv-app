@@ -8,10 +8,10 @@ import AboutMe from './AboutMe';
 import Experiences from './Experiences';
 import Skills from './Skills';
 import Management from './Management';
+import Footer from './Footer';
 import { handleChildUpdates } from './helpers/helperFunctions';
 import { defaultDataRaw, dummyDataRaw } from './defaultData';
 import './styles/CV.css';
-import Button from './ActionButton';
 
 export default class CV extends Component {
   constructor(props) {
@@ -166,6 +166,7 @@ export default class CV extends Component {
               )}
             </PrintContextConsumer>
           </ReactToPrint>
+          <Footer />
         </div>
       </div>
     );

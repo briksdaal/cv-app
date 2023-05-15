@@ -7,13 +7,13 @@
   content: "";
   margin-right: -12px;
 }
-
 .skills li:last-child {
   display: none;
   padding-bottom: 10px;
 }
 
-.skills:hover li:last-child {
+.skills:hover li:last-child,
+.skills li:first-child {
   display: list-item;
 }
 

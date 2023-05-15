@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ActionButton from './ActionButton';
-import { handleChildUpdates } from './helpers/helperFunctions';
 import './styles/EditableImage.css';
 
 export default class Header extends Component {
