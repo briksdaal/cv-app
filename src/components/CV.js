@@ -142,7 +142,6 @@ export default class CV extends Component {
               </Section>
             </div>
           </div>
-          {/* <div className="bottom-bar" /> */}
         </div>
         <div className="management-container">
           <Management

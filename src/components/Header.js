@@ -35,9 +35,6 @@ export default class Header extends Component {
           url={header.img}
           handleGlobalStateUpdate={(newChild) => handleChildUpdates(header, newChild, 'img', updateHeader)}
         />
-        {/* <div className="img-container">
-          <img src={header.img} alt="profile portrait" />
-        </div> */}
       </div>
     );
   }
