@@ -1,0 +1,13 @@
+.management-container button {
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: 1rem;
+    box-shadow: #cbcbcb 1px 1px 3px 1px;
+}
+
+.management-container button:hover {
+    background: #b5b5b5;
+    color: #fff;
+}
