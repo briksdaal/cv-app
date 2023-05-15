@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FaCheck, FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { GrFormCheckmark } from 'react-icons/gr';
 import { ImPlus } from 'react-icons/im';
@@ -10,7 +10,6 @@ export default class Button extends Component {
     const {
       type,
       onClick,
-      children,
     } = this.props;
 
     let btn = 'Click';

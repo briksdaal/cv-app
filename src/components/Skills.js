@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import EditableContent from './EditableContent';
 import ActionButton from './ActionButton';
-import { handleChildUpdates, handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
+import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 import './styles/Skills.css';
 
 export default class Skills extends Component {

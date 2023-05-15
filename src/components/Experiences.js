@@ -1,8 +1,6 @@
 import { Component } from 'react';
-import EditableContent from './EditableContent';
 import SingleExperience from './SingleExperience';
 import ActionButton from './ActionButton';
-import { handleLiUpdates, handleLiRemove } from './helpers/helperFunctions';
 import './styles/Experiences.css';
 
 export default class Experiences extends Component {
