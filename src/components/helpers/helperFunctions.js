@@ -25,4 +25,20 @@ function handleLiRemove(key, currentArray, parentUpdateFunc) {
   parentUpdateFunc(newArray);
 }
 
-export { handleChildUpdates, handleLiUpdates, handleLiRemove };
+function getDataWithKeys(data, getNextId) {
+  console.log('!');
+  return Object.fromEntries(Object.entries(data).map((entry) => {
+    let value = entry[1];
+    if (Array.isArray(value)) {
+      value = value.map((info) => ({
+        key: getNextId(),
+        ...getDataWithKeys({ ...info }, getNextId),
+      }));
+    }
+    return [entry[0], value];
+  }));
+}
+
+export {
+  handleChildUpdates, handleLiUpdates, handleLiRemove, getDataWithKeys,
+};
