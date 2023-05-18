@@ -32,6 +32,7 @@ export default function Header({
       <input
         type="file"
         ref={hiddenFileInput}
+        value=""
         accept="image/*"
         onChange={handleChange}
         style={{ display: 'none' }}
