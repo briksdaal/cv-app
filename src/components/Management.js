@@ -1,13 +1,40 @@
+import { useEffect } from 'react';
 import './styles/Management.css';
 
 export default function Management({
+  data,
+  setData,
+  defaultData,
+  dummyData,
   currentEdits,
-  handleLoadDummyData,
-  handleLoadDefaultData,
-  handleLoadSavedData,
-  handleSaveData,
-  handleClearSavedData,
 }) {
+  function handleLoadDummyData() {
+    setData(dummyData);
+  }
+
+  function handleLoadDefaultData() {
+    setData(defaultData);
+  }
+
+  function handleLoadSavedData() {
+    const loadedData = JSON.parse(localStorage.getItem('savedData'));
+    if (loadedData) {
+      setData(loadedData);
+    }
+  }
+
+  function handleSaveData() {
+    localStorage.setItem('savedData', JSON.stringify(data));
+  }
+
+  function handleClearSavedData() {
+    localStorage.clear();
+  }
+
+  useEffect(() => {
+    handleClearSavedData();
+  }, []);
+
   const editMode = currentEdits !== 0;
 
   return (
