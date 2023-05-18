@@ -26,7 +26,6 @@ function handleLiRemove(key, currentArray, parentUpdateFunc) {
 }
 
 function getDataWithKeys(data, getNextId) {
-  console.log('!');
   return Object.fromEntries(Object.entries(data).map((entry) => {
     let value = entry[1];
     if (Array.isArray(value)) {
