@@ -1,51 +1,44 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import ActionButton from './ActionButton';
 import './styles/EditableContent.css';
 
-export default class EditableContent extends Component {
-  constructor(props) {
-    super(props);
+export default function EditableContent({
+  children,
+  text,
+  className,
+  textarea,
+  changeCurrentEdits,
+  changeExperienceEdits,
+  handleGlobalStateUpdate,
+  handleLiRemove,
+}) {
+  const [editMode, setEditMode] = useState(false);
+  const [inputVal, setInputVal] = useState(text);
 
-    this.state = {
-      editMode: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
+  function handleChange(e) {
+    setInputVal(e.target.value);
   }
 
-  handleChange(e) {
-    this.setState({ inputVal: e.target.value });
-  }
+  function handleEdit() {
+    setEditMode(true);
+    setInputVal(text);
 
-  handleEdit() {
-    const { text, changeCurrentEdits, changeExperienceEdits } = this.props;
-    this.setState({
-      editMode: true,
-      inputVal: text,
-    });
     changeCurrentEdits(1);
     if (changeExperienceEdits) {
       changeExperienceEdits(1);
     }
   }
 
-  handleUpdate() {
-    const { handleGlobalStateUpdate, changeCurrentEdits, changeExperienceEdits } = this.props;
-    const { inputVal } = this.state;
+  function handleUpdate() {
     changeCurrentEdits(-1);
     if (changeExperienceEdits) {
       changeExperienceEdits(-1);
     }
-    this.setState({ editMode: false });
+    setEditMode(false);
     handleGlobalStateUpdate(inputVal);
   }
 
-  handleRemove() {
-    const { editMode } = this.state;
-    const { changeCurrentEdits, handleLiRemove, changeExperienceEdits } = this.props;
+  function handleRemove() {
     if (editMode) {
       changeCurrentEdits(-1);
       if (changeExperienceEdits) {
@@ -55,62 +48,41 @@ export default class EditableContent extends Component {
     handleLiRemove();
   }
 
-  render() {
-    const {
-      editMode,
-      inputVal,
-    } = this.state;
-    const {
-      children,
-      className,
-      textarea,
-      handleLiRemove,
-    } = this.props;
+  const classList = [
+    'editable',
+    className,
+    handleLiRemove && 'removeable',
+    editMode && 'in-edit',
+  ]
+    .filter((c) => c)
+    .join(' ');
 
-    const inputEl = textarea
-      ? <textarea value={inputVal} onChange={this.handleChange} />
-      : <input type="text" value={inputVal} onChange={this.handleChange} />;
+  const inputEl = textarea
+    ? <textarea value={inputVal} onChange={handleChange} />
+    : <input type="text" value={inputVal} onChange={handleChange} />;
 
-    const classArray = ['editable'];
-
-    if (className) {
-      classArray.push(className);
-    }
-    if (handleLiRemove) {
-      classArray.push('removable');
-    }
-    if (editMode) {
-      classArray.push('in-edit');
-    }
-
-    return (
-      <div className={classArray.join(' ')}>
-        { editMode
-          ? inputEl
-          : children }
-        <div className="action-buttons-container">
-          {editMode
-            ? (
-              <ActionButton
-                onClick={this.handleUpdate}
-                type="check"
-              />
-            )
-            : (
-              <ActionButton
-                onClick={this.handleEdit}
-                type="edit"
-              />
-            )}
-          {handleLiRemove
+  return (
+    <div className={classList}>
+      {editMode
+        ? inputEl
+        : children}
+      <div className="action-buttons-container">
+        <ActionButton
+          onClick={editMode
+            ? handleUpdate
+            : handleEdit}
+          type={editMode
+            ? 'check'
+            : 'edit'}
+        />
+        {handleLiRemove
               && (
               <ActionButton
-                onClick={this.handleRemove}
+                onClick={handleRemove}
                 type="remove"
               />
               )}
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
