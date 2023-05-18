@@ -1,48 +1,41 @@
-import React, { Component } from 'react';
+import { useRef } from 'react';
 import ActionButton from './ActionButton';
 import './styles/EditableImage.css';
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
+export default function Header({
+  handleGlobalStateUpdate,
+  url,
+}) {
+  const hiddenFileInput = useRef(null);
 
-    this.hiddenFileInput = React.createRef();
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+  function handleClick() {
+    hiddenFileInput.current.click();
   }
 
-  handleClick() {
-    this.hiddenFileInput.current.click();
-  }
-
-  handleChange(e) {
+  function handleChange(e) {
     if (e.target.value === '') {
       return;
     }
-    const { handleGlobalStateUpdate } = this.props;
     const newUrl = URL.createObjectURL(e.target.files[0]);
     handleGlobalStateUpdate(newUrl);
   }
 
-  render() {
-    const { url } = this.props;
-    return (
-      <div className="img-container">
-        <img src={url} alt="profile portrait" />
-        <div className="action-buttons-container">
-          <ActionButton
-            type="edit"
-            onClick={this.handleClick}
-          />
-        </div>
-        <input
-          type="file"
-          ref={this.hiddenFileInput}
-          accept="image/*"
-          onChange={this.handleChange}
-          style={{ display: 'none' }}
+  return (
+    <div className="img-container">
+      <img src={url} alt="profile portrait" />
+      <div className="action-buttons-container">
+        <ActionButton
+          type="edit"
+          onClick={handleClick}
         />
       </div>
-    );
-  }
+      <input
+        type="file"
+        ref={hiddenFileInput}
+        accept="image/*"
+        onChange={handleChange}
+        style={{ display: 'none' }}
+      />
+    </div>
+  );
 }
