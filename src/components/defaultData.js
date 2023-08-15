@@ -74,7 +74,7 @@ const defaultDataRaw = {
   },
   aboutMe: 'A paragraph about you',
   details: {
-    email: 'emailadress@provider.com',
+    email: 'emailaddress@provider.com',
     phone: '+1 (234) 567-8910',
     address: '123 Street Name, City, Country',
     url: 'www.yourwebsite.aaa',
